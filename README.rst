@@ -1,9 +1,9 @@
 git-little-picture
 ##################
 
-Introspect your repository by drawing a DAG mapping blob names to content
-hashes, arranged by tree name. This is useful for looking at how Git handles
-deduplication, but not much else.
+Introspect your repository by drawing a DAG of the tree object behind a commit.
+The graph shows the mapping of tree names to blob names to content hashes. This
+is useful for looking at how Git handles deduplication, but not much else.
 
 Prerequisites
 =============
