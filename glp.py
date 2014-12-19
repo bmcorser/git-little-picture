@@ -32,7 +32,7 @@ def recurse_tree(repo, graph, parent, entry):
         graph.add_node(blob_node(git_id))
         return parent
     if isinstance(git_object, pygit2.Tree):
-        node = tree_node(git_id)
+        node = tree_node(entry.name)
         graph.add_node(node)
         graph.add_edge(pydot.Edge(node, parent))
         return recurse_tree(repo, graph, node, git_object)
