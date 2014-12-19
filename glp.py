@@ -48,8 +48,11 @@ def main(repo_path, ref):
     repo = pygit2.Repository(repo_path)
     tree = repo.revparse_single(ref).tree
     graph = pydot.Dot(ref, graph_type='digraph')
-    root_node = commit_node(ref)
+    commit = commit_node(ref)
+    graph.add_node(commit)
+    root_node = tree_node(tree.id.hex[:7])
     graph.add_node(root_node)
+    graph.add_edge(pydot.Edge(commit, root_node, dir='back'))
     for entry in tree:
         graph_tree_entries(repo, graph, root_node, entry)
     graph.write_svg("{0}.svg".format(ref))
