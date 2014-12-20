@@ -14,6 +14,7 @@ pygit2_constants = {
 def node(prefix, colour, git_id):
     return pydot.Node('"{0}: {1}"'.format(prefix, git_id),
                       style='filled',
+                      fontname='courier',
                       color=colour)
 
 commit_node = functools.partial(node, 'commit', '#FF851B')
@@ -47,7 +48,7 @@ def graph_tree_entries(repo, graph, parent, entry):
 def main(repo_path, ref):
     repo = pygit2.Repository(repo_path)
     tree = repo.revparse_single(ref).tree
-    graph = pydot.Dot(ref, graph_type='digraph')
+    graph = pydot.Dot(graph_type='digraph')
     commit = commit_node(ref)
     graph.add_node(commit)
     root_node = tree_node(tree.id.hex[:7])
